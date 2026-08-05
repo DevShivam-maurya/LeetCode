@@ -20,7 +20,7 @@ public:
                     l = mid +1;
                 }
             }else{
-                if(nums[mid] <= target && target <= nums[r]){
+                if(nums[mid] < target && target <= nums[r]){
                     l = mid + 1;
                 }else{
                     r = mid-1;

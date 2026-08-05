@@ -13,7 +13,7 @@ public:
                 continue;
             }
 
-            if(nums[l] < nums[mid]){
+            if(nums[l] <= nums[mid]){
                 if(nums[l]<=target && target <= nums[mid]){
                     r = mid-1;
                 }else{

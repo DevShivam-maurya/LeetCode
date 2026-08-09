@@ -1,42 +1,46 @@
 class Solution {
-
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        vector<int> ans;
+        int m = matrix.size();
+        int n= matrix[0].size();
+        vector<int>ans;
+        int srow=0;
+        int erow=m-1;
+        int scol=0;
+        int ecol = n-1;
 
-        int top = 0;
-        int bottom = matrix.size() - 1;
-        int left = 0;
-        int right = matrix[0].size() - 1;
-
-        while (top <= bottom && left <= right) {
-
-            // Left to Right
-            for (int i = left; i <= right; i++)
-                ans.push_back(matrix[top][i]);
-            top++;
-
-            // Top to Bottom
-            for (int i = top; i <= bottom; i++)
-                ans.push_back(matrix[i][right]);
-            right--;
-
-            // Right to Left
-            if (top <= bottom) {
-                for (int i = right; i >= left; i--)
-                    ans.push_back(matrix[bottom][i]);
-                bottom--;
+        while(srow<=erow && scol<=ecol){
+            //top
+            for( int j=scol; j<= ecol ; j++){
+                ans.push_back(matrix[srow][j]);
             }
 
-            // Bottom to Top
-            if (left <= right) {
-                for (int i = bottom; i >= top; i--)
-                    ans.push_back(matrix[i][left]);
-                left++;
+            //right
+            for(int i= srow+1 ; i<=erow ; i++){
+                ans.push_back(matrix[i][ecol]);
             }
+            //bottom
+
+            for(int j= ecol-1 ; j>=scol ; j--){
+                if(srow==erow){
+                    break;
+                }
+                ans.push_back(matrix[erow][j]);
+            }
+            //left
+            for(int i=erow-1 ; i>=srow+1 ; i--){
+                if(scol==ecol){
+                    break;
+                }
+                ans.push_back(matrix[i][scol]);
+            }
+            srow++ ;
+            erow--;
+           
+            scol++;
+            ecol--;
         }
-
         return ans;
+        
     }
 };
-    
